@@ -1,0 +1,6 @@
+*.root
+*.db
+*.swp
+*.log
+*.fcl
+*.jsonnet
