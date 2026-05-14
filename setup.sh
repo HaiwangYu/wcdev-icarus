@@ -5,7 +5,7 @@ setup icaruscode v10_20_03 -q e26:prof
 
 # source /exp/sbnd/app/users/yuhw/larsoft/v10_14_02/localProducts_larsoft_v10_14_02_02_e26_prof/setup
 # mrbslp
-path-prepend /exp/sbnd/app/users/yuhw/opt CMAKE_PREFIX_PATH
+# path-prepend /exp/sbnd/app/users/yuhw/opt CMAKE_PREFIX_PATH
 
 path-remove ()
 {
@@ -36,11 +36,11 @@ path-append ()
     export $PATHVARIABLE="${!PATHVARIABLE:+${!PATHVARIABLE}:}$1"
 }
 
-path-prepend /exp/sbnd/app/users/yuhw/opt/lib/ LD_LIBRARY_PATH
-path-prepend /exp/sbnd/app/users/yuhw/opt/bin/ PATH
+path-prepend /exp/icarus/app/users/yuhw/opt/lib/ LD_LIBRARY_PATH
+path-prepend /exp/icarus/app/users/yuhw/opt/bin/ PATH
 
-# path-prepend /exp/sbnd/app/users/yuhw/wire-cell-data WIRECELL_PATH
-# path-prepend /exp/sbnd/app/users/yuhw/wire-cell-toolkit/cfg WIRECELL_PATH
+# path-prepend /exp/icarus/app/users/yuhw/wire-cell-data WIRECELL_PATH
+# path-prepend /exp/icarus/app/users/yuhw/wire-cell-toolkit/cfg WIRECELL_PATH
 
 rs
 export PS1=(app)$PS1
