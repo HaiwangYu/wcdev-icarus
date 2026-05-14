@@ -2189,8 +2189,8 @@ physics: {
       "emuTriggerUnshifted",
       "shifted",
       "shiftedpriorSCE",
-      "filtersed",
-      "daq"
+      "filtersed"
+      , "daq"
     #   , "merge",
     #   "crtdaq"
    ]

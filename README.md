@@ -10,3 +10,18 @@ lar -n 1 -c standard_mc_all_detsim_icarus.fcl -s xroot://fndca1.fnal.gov:1095/pn
 fhicl-dump detsim_2d_icarus_refactored_yzsim.fcl >& detsim-yz-v10_20_03.fcl
 lar --trace -n 1 -c detsim-yz-v10_20_03.fcl -s xroot://fndca1.fnal.gov:1095/pnfs/fnal.gov/usr/icarus/persistent/stash/ContinuousIntegration/reference/standard/g4/intimecosmic_g4_test_icaruscode_Reference.root -o detsim.root
 ```
+
+
+## valgrind
+```bash
+valgrind --tool=massif \
+  --massif-out-file=massif.out.%p \
+  --pages-as-heap=no \
+  --time-unit=ms \
+  --detailed-freq=1 \
+  --max-snapshots=200 \
+  lar --trace -n 1 -c detsim-yz-v10_20_03.fcl \
+    -s xroot://fndca1.fnal.gov:1095/pnfs/fnal.gov/usr/icarus/persistent/stash/ContinuousIntegration/reference/standard/g4/intimecosmic_g4_test_icaruscode_Reference.root \
+    -o detsim.root \
+  2>&1 | tee massif.log
+```
