@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>wcls-multitpc-sim-drift-simchannel-yzsim-refactored</title>
+<style>
+  html,body { margin:0; height:100%; background:#222; color:#eee; font-family:sans-serif; }
+  #controls { position:fixed; top:8px; left:8px; z-index:10;
+              background:#333; padding:6px 8px; border-radius:4px; font-size:12px; }
+  #controls button { margin-right:4px; }
+  #frame { width:100vw; height:100vh; border:0; display:block; background:#fff; }
+</style></head>
+<body>
+<div id="controls">
+  <button onclick="zoom.zoomIn()">+</button>
+  <button onclick="zoom.zoomOut()">-</button>
+  <button onclick="zoom.resetZoom();zoom.resetPan()">reset</button>
+  <button onclick="zoom.fit();zoom.center()">fit</button>
+  <span>drag = pan, scroll = zoom, Ctrl+F in the SVG = search labels</span>
+</div>
+<object id="frame" type="image/svg+xml" data="wcls-multitpc-sim-drift-simchannel-yzsim-refactored.svg"></object>
+<script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+<script>
+  let zoom;
+  document.getElementById('frame').addEventListener('load', function() {
+    zoom = svgPanZoom(this.contentDocument.documentElement, {
+      zoomScaleSensitivity: 0.4, minZoom: 0.05, maxZoom: 50,
+      controlIconsEnabled: false, fit: true, center: true,
+    });
+  });
+</script>
+</body></html>
