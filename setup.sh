@@ -39,8 +39,12 @@ path-append ()
 path-prepend /exp/icarus/app/users/yuhw/opt/lib/ LD_LIBRARY_PATH
 path-prepend /exp/icarus/app/users/yuhw/opt/bin/ PATH
 
-# path-prepend /exp/icarus/app/users/yuhw/wire-cell-data WIRECELL_PATH
-# path-prepend /exp/icarus/app/users/yuhw/wire-cell-toolkit/cfg WIRECELL_PATH
+# Put the local WCT cfg tree FIRST in WIRECELL_PATH so edits to
+# pgrapher/experiment/icarus/*.jsonnet etc. take effect at run time.
+# Without this, lar resolves these files from the (older) cvmfs copy bundled
+# with icaruscode v10_20_03/wire-cell-cfg and any local cfg changes are ignored.
+path-prepend /exp/icarus/app/users/yuhw/wire-cell-data WIRECELL_PATH
+path-prepend /exp/icarus/app/users/yuhw/wire-cell-toolkit/cfg WIRECELL_PATH
 
 rs
 export PS1=(app)$PS1
