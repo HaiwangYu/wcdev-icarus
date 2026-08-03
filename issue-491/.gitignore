@@ -1,0 +1,19 @@
+# Large local artifacts from the issue-491 investigation — do not commit.
+# Source copies / build trees / built libraries
+wct-src/
+wct-master/
+fixlib/
+*-install/
+
+# Run artifacts
+*.log
+*.root
+*.db
+reco0.fcl.dump
+
+# Keep the intentionally-tracked deliverables (scripts, fcls, summary, pkgconfig-fix/)
+!*.sh
+!*.fcl
+!*.md
+!*.txt
+!gdb-cmds.txt
