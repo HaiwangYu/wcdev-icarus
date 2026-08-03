@@ -1,0 +1,5 @@
+set pagination off
+set breakpoint pending on
+run
+bt 40
+quit

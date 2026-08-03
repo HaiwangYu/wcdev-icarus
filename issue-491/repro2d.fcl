@@ -1,0 +1,15 @@
+#include "icarus_ci_single_reco0_seq_test_icaruscode.fcl"
+
+# The provided detsim file stores RawDigits under daq0..daq3 (one producer per
+# TPC), but the stock reco0 MCDecodeTPCROI expects a single "daq" label. Remap
+# so the decoder finds the RawDigits.  Order must match OutInstanceLabelVec:
+#   [PHYSCRATEDATATPCWW, PHYSCRATEDATATPCWE, PHYSCRATEDATATPCEW, PHYSCRATEDATATPCEE]
+physics.producers.MCDecodeTPCROI.FragmentsLabelVec: [ "daq3:TPCWW", "daq2:TPCWE", "daq1:TPCEW", "daq0:TPCEE" ]
+
+# Run the 2D WireCell signal processing path (the modules that crash in issue 491)
+# instead of the stock 1D decon path.
+physics.reco2d: [ "MCDecodeTPCROI", "decon2droiEE", "decon2droiEW", "decon2droiWE", "decon2droiWW" ]
+physics.trigger_paths: [ "reco2d" ]
+
+# Keep the run self-contained: no output file needed to trigger the crash.
+physics.end_paths: []

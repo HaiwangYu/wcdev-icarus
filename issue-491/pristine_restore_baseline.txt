@@ -1,0 +1,47 @@
+
+void OmnibusSigProc::restore_baseline(Array::array_xxf& arr)
+{
+    int nempty=0;
+    for (int i = 0; i != arr.rows(); i++) {
+        Waveform::realseq_t signal(arr.cols());
+        int ncount = 0;
+        for (int j = 0; j != arr.cols(); j++) {
+            if (arr(i, j) != 0) {
+                signal.at(ncount) = arr(i, j);
+                ncount++;
+            }
+        }
+        if (!ncount) {
+            ++nempty;
+            continue;
+        }
+        signal.resize(ncount);
+        //std::cout << "Restoring baseline 1: " << signal.size() << std::endl;
+        float baseline = WireCell::Waveform::median(signal);
+
+        //std::cout << "Baseline 1: " << baseline << std::endl;
+
+        Waveform::realseq_t temp_signal(arr.cols());
+        ncount = 0;
+        for (size_t j = 0; j != signal.size(); j++) {
+            if (fabs(signal.at(j) - baseline) < 500) {
+                temp_signal.at(ncount) = signal.at(j);
+                ncount++;
+            }
+        }
+        temp_signal.resize(ncount);
+        //std::cout << "Restoring baseline 2: " << temp_signal.size() << std::endl;
+
+        baseline = WireCell::Waveform::median(temp_signal);
+        //std::cout << "Baseline 2: " << baseline << std::endl;
+
+        for (int j = 0; j != arr.cols(); j++) {
+            if (arr(i, j) != 0) arr(i, j) -= baseline;
+        }
+    }
+    if (nempty) {
+        log->debug("{} empty rows out of size=({},{})",
+                   nempty, arr.rows(), arr.cols());
+    }
+}
+

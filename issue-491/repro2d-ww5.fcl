@@ -1,0 +1,3 @@
+#include "repro2d.fcl"
+# WW module only, to run more events faster.
+physics.reco2d: [ "MCDecodeTPCROI", "decon2droiWW" ]
