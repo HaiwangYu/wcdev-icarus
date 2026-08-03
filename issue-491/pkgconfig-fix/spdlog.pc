@@ -1,0 +1,12 @@
+prefix=/cvmfs/larsoft.opensciencegrid.org/products/spdlog/v1_14_1/Linux64bit+3.10-2.17-e26-prof
+exec_prefix=${prefix}
+includedir=${prefix}/include
+libdir=${exec_prefix}/lib64
+
+Name: libspdlog
+Description: Fast C++ logging library.
+URL: https://github.com/gabime/spdlog
+Version: 1.14.1
+CFlags: -I${includedir} -DSPDLOG_SHARED_LIB -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL
+Libs: -L${libdir} -lspdlog -pthread
+Requires: fmt
